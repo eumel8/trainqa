@@ -3,22 +3,35 @@
 import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
 
 homestation = '8013472'
+
+def gspread_data(date,trainnumber,traindeparture,traintarget,traindelay,traintext):
+    row = [date,trainnumber,traindeparture,traintarget,traindelay,traintext]
+    scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_name('gspread-secret.json', scope)
+    client = gspread.authorize(creds)
+    sheet = client.open('trainqa').sheet1
+    sheet.insert_row(row)
+    return
 
 def parse_departures1(html,dt):
 
     soup = BeautifulSoup(html, "html.parser")
     date = dt.strftime("%d.%m.%y")
 
-    print ("Date\t\tTrain\t\tDeparture\tTarget\t\t\t\tDelay\tText")
+    # print ("Date\t\tTrain\t\tDeparture\tTarget\t\t\t\tDelay\tText")
     for row in soup.find_all('div', attrs={'class': 'sqdetailsDep trow'}):
         trainnumber = row.span.contents[0]
         trainurl = row.a['href']
         traintarget = row.br.previous_element.strip()[3:]
         traindeparture = (row.find_all('span')[-1].get_text())
         traindelay, traintext = traindetails(date,trainnumber,trainurl)
-        print ("%s\t%s\t%s\t\t%s\t\t\t\t%s\t%s" % (date,trainnumber,traindeparture,traintarget,traindelay,traintext))
+        gspread_data(date,trainnumber,traindeparture,traintarget,traindelay,traintext)
+        #print ("%s\t%s\t%s\t\t%s\t\t\t\t%s\t%s" % (date,trainnumber,traindeparture,traintarget,traindelay,traintext))
     return
 
 def parse_train(html):
@@ -60,4 +73,5 @@ def departures(origin, dt=datetime.now()):
     return parse_departures1(rsp.text,dt)
 
 if __name__ == "__main__":
+    #gspread_data()
     departures(homestation)
