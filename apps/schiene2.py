@@ -15,8 +15,29 @@ def gspread_data(date,trainnumber,traindeparture,traintarget,traindelay,traintex
     creds = ServiceAccountCredentials.from_json_keyfile_name('gspread-secret.json', scope)
     client = gspread.authorize(creds)
     sheet = client.open('trainqa').sheet1
+    #sheet.update_cell(1, 1, "Date")
+    #sheet.update_cell(1, 2, "Train")
+    #sheet.update_cell(1, 3, "Departure")
+    #sheet.update_cell(1, 4, "Target")
+    #sheet.update_cell(1, 5, "Delay")
+    #sheet.update_cell(1, 6, "Text")
     sheet.insert_row(row)
+    removeDuplicates(sheet)
     return
+
+def removeDuplicates(sheet):
+  data = sheet.get_all_values()
+  datalen = len(data)
+  newData = []
+  for i in range(len(data)):
+      row = data[i]
+      for j in range(len(newData)):
+          #if row.join() == newData[j].join():
+          if row == newData[j]:
+              sheet.delete_row(i)
+
+  return
+
 
 def parse_departures1(html,dt):
 
@@ -64,7 +85,7 @@ def departures(origin, dt=datetime.now()):
         'ti': dt.strftime("%H:%M"),
         'p': '1111101',
         'rt': 1,
-        'max': 7,
+        'max': 4,
         'use_realtime_filter': 1,
         'start': "yes",
         'L': 'vs_java3'
