@@ -1,2 +1,3 @@
 secretfile filter=git-crypt diff=git-crypt
 gspread-secret.json filter=git-crypt diff=git-crypt
+project-links.txt filter=git-crypt diff=git-crypt

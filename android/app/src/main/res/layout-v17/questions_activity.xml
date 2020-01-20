@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:support="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:fadeScrollbars="true"
+      android:isScrollContainer="true"
+      android:longClickable="false"
+      android:orientation="vertical"
+      android:paddingLeft="@dimen/activity_horizontal_margin"
+      android:paddingTop="@dimen/activity_vertical_margin"
+      android:paddingRight="@dimen/activity_horizontal_margin"
+      android:paddingBottom="@dimen/activity_vertical_margin"
+      support:layout_scrollFlags="scroll"
+      tools:context=".QuestionsActivity">
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/app_desc"
+        android:textSize="14sp" />
+
+
+
+    <DatePicker
+        android:id="@+id/question_feld1d_input"
+        android:layout_width="232dp"
+        android:layout_height="90dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+    <TimePicker
+        android:id="@+id/question_feld1t_input"
+        style="@android:style/Widget.Material.Light.TimePicker"
+        android:layout_width="232dp"
+        android:layout_height="90dp"
+        android:animateLayoutChanges="false"
+        android:timePickerMode="spinner" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <RadioGroup
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/question_feld2_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:hint="@string/question_feld2_input_hint" />
+
+        <RadioButton
+            android:id="@+id/question_feld3_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/question_feld3_input_hint" />
+      </RadioGroup>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/question_feld4_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/question_feld4_text" />
+
+    <RatingBar
+        android:id="@+id/question_feld4_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/question_feld4_input_hint" />
+
+
+    <TextView
+        android:id="@+id/question_feld5_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/question_feld5_text" />
+
+    <RatingBar
+        android:id="@+id/question_feld5_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/question_feld5_input_hint" />
+
+    <TextView
+        android:id="@+id/question_feld6_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/question_feld6_text" />
+
+    <RatingBar
+        android:id="@+id/question_feld6_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/question_feld6_input_hint" />
+
+
+    <CheckBox
+        android:id="@+id/question_feld7_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/question_feld7" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/questions_submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="15dip"
+        android:elevation="6dip"
+        android:src="@android:drawable/ic_dialog_email"
+        support:pressedTranslationZ="12dip" />
+
+  </LinearLayout>
+
+</ScrollView>
+

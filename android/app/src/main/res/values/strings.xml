@@ -1,0 +1,14 @@
+<resources>
+  <string name="app_name">Bahnumfrage Brieselang</string>
+  <string name="app_desc">Die Interessengruppe Bahn Brieselang bittet um Bewertung Ihrer Reise mit der Deutschen Bahn. Wählen Sie Reisezeit und Richtung:</string>
+  <string name="question_feld1_input_hint">Datum/Uhrzeit</string>
+  <string name="question_feld2_input_hint">Richtung Berlin</string>
+  <string name="question_feld3_input_hint">Richtung Nauen</string>
+  <string name="question_feld4_text">Pünktlichkeit (1=schlecht, 5=sehr gut)</string>
+  <string name="question_feld5_text">Platzangebot (1=schlecht, 5=sehr gut)</string>
+  <string name="question_feld6_text">Auslastung (1=schlecht, 5=sehr gut)</string>
+  <string name="question_feld4_input_hint">Pünktlichkeit (1=schlecht)</string>
+  <string name="question_feld5_input_hint">Platzangebot (1=schlecht)</string>
+  <string name="question_feld6_input_hint">Auslastung (1=schlecht)</string>
+  <string name="question_feld7">Reise akzeptabel?</string>
+ </resources>
