@@ -48,7 +48,7 @@ def parse_departures1(html,dt):
         trainnumber = row.span.contents[0]
         trainurl = row.a['href']
         traintarget = row.br.previous_element.strip()[3:]
-        traindeparture = (row.find_all('span')[-1].get_text())
+        traindeparture = (row.find_all('span', attrs={'class': 'bold'})[-1].get_text())
         traindelay, traintext, trainnote = traindetails(date,trainnumber,trainurl)
         gspread_data(date,trainnumber,traindeparture,traintarget,traindelay,traintext,trainnote)
     return
