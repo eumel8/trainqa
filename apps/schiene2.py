@@ -26,18 +26,17 @@ def gspread_data(date,trainnumber,traindeparture,traintarget,traindelay,traintex
     return
 
 def removeDuplicates(sheet):
-  data = sheet.get_all_values()
-  datalen = len(data)
-  newData = []
-  for i in range(len(data)):
-      row = data[i]
-      for j in range(len(newData)):
-          #if row.join() == newData[j].join():
-          if row == newData[j]:
-              sheet.delete_row(i)
+    data = sheet.get_all_values()
+    datalen = len(data)
+    newData = []
 
-  return
-
+    for i in range(len(data)):
+        row = data[i]
+        if row not in newData:
+            newData.append(row)
+        else:
+            sheet.delete_row(i)
+    return
 
 def parse_departures1(html,dt):
 
