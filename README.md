@@ -6,7 +6,7 @@ Deutsche Bahn timetable in realtime for station Brieselang.
 The data are stored on a Google Spreadsheet. Travellers can adjust the data
 based on their personal experiences and visualized on Tableau.
 
-A first draft is here: https://public.tableau.com/profile/frank.kloeker#!/vizhome/trainqa/Blatt1
+A first draft is here: https://public.tableau.com/profile/frank.kloeker#!/vizhome/trainqa/Dashboard1
 
 The project is more described here: https://github.com/eumel8/trainqa/projects/1
 
