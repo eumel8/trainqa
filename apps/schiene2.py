@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
-
+# adjust homestation by International Station ID https://www.michaeldittrich.de/ibnr/index.php
 homestation = '8013472'
 
 def gspread_data(date,trainnumber,traindeparture,traintarget,traindelay,traintext,trainnote):
