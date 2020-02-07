@@ -11,7 +11,7 @@ public interface QuestionsSpreadsheetWebService {
     @FormUrlEncoded
     Call<Void> completeQuestionnaire(
             @Field("entry.1476348758") String feld1t,
-            @Field("entry.679257558")  Boolean feld2,
+            @Field("entry.679257558")  String feld2,
             @Field("entry.1485087550") Float feld4,
             @Field("entry.617878135") Float feld5,
             @Field("entry.1543695788") Float feld6,

@@ -8,9 +8,6 @@
     android:fitsSystemWindows="true"
     tools:context=".QuestionsActivity">
 
-
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -22,81 +19,73 @@
         android:gravity="center"
         android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_desc"
-        android:textSize="14sp" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_more" />
-
-    <DatePicker
-        android:id="@+id/question_feld1d_input"
-        android:layout_width="232dp"
-        android:layout_height="90dp"
-        android:calendarViewShown="false"
-        android:datePickerMode="spinner" />
-
-    <TimePicker
-        android:id="@+id/question_feld1t_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="false"
-        android:timePickerMode="spinner" />
-
-
         <TextView
-            android:id="@+id/textVieww"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_train"
-            android:textSize="14sp" />
+            android:layout_height="103dp"
+            android:text="@string/app_desc"
+            android:textSize="18sp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:baselineAligned="false"
+            android:orientation="vertical">
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/question_feld2_input"
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:hint="@string/question_feld2_input_hint" />
+                android:layout_gravity="center"
+                android:src="@android:drawable/ic_menu_myplaces"
+                app:borderWidth="2.5dp" />
 
-            <RadioButton
-                android:id="@+id/question_feld3_input"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textVieww"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/question_feld3_input_hint" />
-        </RadioGroup>
-    </android.support.design.widget.TextInputLayout>
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+
 
     <TextView
         android:id="@+id/question_feld4_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rahmen"
         android:text="@string/question_feld4_text" />
 
-    <RatingBar
-        android:id="@+id/question_feld4_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/question_feld4_input_hint" />
+        <RatingBar
+            android:id="@+id/question_feld4_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/question_feld4_input_hint"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="1dp" />
 
 
     <TextView
         android:id="@+id/question_feld5_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rahmen"
         android:text="@string/question_feld5_text" />
 
 
@@ -104,14 +93,14 @@
         android:id="@+id/question_feld5_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="1dp" />
 
     <TextView
         android:id="@+id/question_feld6_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rahmen"
         android:text="@string/question_feld6_text" />
 
     <RatingBar
@@ -119,16 +108,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
         android:layout_marginTop="1dp" />
 
-    <CheckBox
-        android:id="@+id/question_feld7_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/question_feld7" />
+        <CheckBox
+            android:id="@+id/question_feld7_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/question_feld7" />
 
-    <android.support.design.widget.FloatingActionButton
+        <android.support.design.widget.FloatingActionButton
         android:id="@+id/questions_submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

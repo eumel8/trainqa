@@ -13,12 +13,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.content.*;
 
 import org.json.JSONArray;
@@ -26,6 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,43 +41,60 @@ class Keys {
 
 public class QuestionsActivity extends AppCompatActivity {
 
-    private DatePicker feld1DayInputField;
-    private TimePicker feld1TimeInputField;
-    private RadioButton feld2InputField;
     private RatingBar feld4InputField;
     private RatingBar feld5InputField;
     private RatingBar feld6InputField;
     private CheckBox feld7InputField;
     private TextView feldwInputField;
+    private TextView feldzInputField;
     private ListView listView;
     private static ArrayList<MyDataModel> list;
     private MyArrayAdapter adapter;
+    private String MyTrain;
+    private String MyZiel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        long msTime = System.currentTimeMillis();
+        Date curDateTime = new Date(msTime);
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("dd'.'MM'.'yy hh:mm");
+        String curDate = formatter.format(curDateTime);
 
-        // setContentView(R.layout.layout_row_view);
+        MyTrain = curDate;
+        MyZiel = "-";
+
         setContentView(R.layout.questions_activity);
 
-        // von MainActivity
+        TextView trainView = (TextView) findViewById(R.id.textVieww);
+        trainView.setText((CharSequence) MyTrain);
+        TextView zielView = (TextView) findViewById(R.id.textViewz);
+        zielView.setText((CharSequence) MyZiel);
 
+
+        Bundle extras = getIntent().getExtras();
+
+        if(extras !=null)
+        {
+            MyTrain = extras.getString("MyTrain");
+            MyZiel = extras.getString("MyZiel");
+//            TextView trainView = (TextView) findViewById(R.id.textVieww);
+            trainView.setText((CharSequence) MyTrain);
+//            TextView zielView = (TextView) findViewById(R.id.textViewz);
+            zielView.setText((CharSequence) MyZiel);
+
+        }
 
     Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://docs.google.com/forms/u/0/d/e/")
                 .build();
         final QuestionsSpreadsheetWebService spreadsheetWebService = retrofit.create(QuestionsSpreadsheetWebService.class);
 
-        feld1DayInputField = (DatePicker) findViewById(R.id.question_feld1d_input);
-        feld1TimeInputField = (TimePicker) findViewById(R.id.question_feld1t_input);
-        feld2InputField = (RadioButton) findViewById(R.id.question_feld2_input);
         feld4InputField = (RatingBar) findViewById(R.id.question_feld4_input);
         feld5InputField = (RatingBar) findViewById(R.id.question_feld5_input);
         feld6InputField = (RatingBar) findViewById(R.id.question_feld6_input);
-        feld7InputField = (CheckBox) findViewById(R.id.question_feld7_input);
-        feldwInputField = (TextView) findViewById(R.id.textVieww);
-        feld1TimeInputField.setIs24HourView(true);
-
+        feld7InputField = (CheckBox) findViewById(R.id.question_feld7_input)
+        ;
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
 
@@ -91,29 +107,21 @@ public class QuestionsActivity extends AppCompatActivity {
                 listView = (ListView) findViewById(R.id.listView);
                 listView.setAdapter(adapter);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    // private ListView selectabfahrt;
 
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        String text = list.get(position).getDatum() + " " + list.get(position).getAbfahrt() ;
-                        // setContentView(R.layout.questions_activity);
-                        startActivity(new Intent(QuestionsActivity.this,QuestionsActivity.class));
+                        String MyTrain = list.get(position).getDatum() + " " + list.get(position).getAbfahrt();
+                        String MyZiel = list.get(position).getZiel();
 
-                        TextView textView = (TextView) findViewById(R.id.textVieww);
-                        textView.setText((CharSequence) text);
+                        Intent i = new Intent (getBaseContext(),QuestionsActivity.class);
+                        i.putExtra("MyTrain", MyTrain);
+                        i.putExtra("MyZiel", MyZiel);
 
-                        // startActivity(new Intent(QuestionsActivity.this,QuestionsActivity.class));
+                        startActivity(i);
 
-                        // Snackbar.make(findViewById(R.id.parent), list.get(position).getDatum() + " => " + list.get(position).getZug() + list.get(position).getAbfahrt() + list.get(position).getZiel(), Snackbar.LENGTH_LONG).show();
                     }
                 });
-
-                // Toast toast = Toast.makeText(getApplicationContext(), "Klicken Sie den FloatingActionButton zum Laden des Fahrplans", Toast.LENGTH_LONG);
-                // toast.setGravity(Gravity.CENTER, 0, 0);
-                // toast.show();
-
-                // end MainActicity
 
                 new GetDataTask().execute();
             }
@@ -127,14 +135,11 @@ public class QuestionsActivity extends AppCompatActivity {
                         Snackbar.make(v, "Ihr Feedback ist erfasst", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
 
-//                        String feld1Input = String.format("%02d.%02d.%04d %02d:%02d",feld1DayInputField.getDayOfMonth(),feld1DayInputField.getMonth() + 1,feld1DayInputField.getYear(),feld1TimeInputField.getHour(),feld1TimeInputField.getMinute());
-                        String feld1Input = feldwInputField.getText().toString();
-                        Boolean feld2Input = feld2InputField.isChecked();
                         Float feld4Input = feld4InputField.getRating();
                         Float feld5Input = feld5InputField.getRating();
                         Float feld6Input = feld6InputField.getRating();
                         Boolean feld7Input = feld7InputField.isChecked();
-                        Call<Void> completeQuestionnaireCall = spreadsheetWebService.completeQuestionnaire(feld1Input, feld2Input, feld4Input, feld5Input, feld6Input, feld7Input);
+                        Call<Void> completeQuestionnaireCall = spreadsheetWebService.completeQuestionnaire(MyTrain, MyZiel, feld4Input, feld5Input, feld6Input, feld7Input);
                         completeQuestionnaireCall.enqueue(callCallback);
                     }
                 }
@@ -145,18 +150,11 @@ public class QuestionsActivity extends AppCompatActivity {
 
         ProgressDialog dialog = new ProgressDialog(QuestionsActivity.this);
         int jIndex;
-        int x;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
 
-            x=list.size();
-            if(x==0)
-                jIndex=0;
-            else
-                jIndex=x;
-            // dialog.setTitle("Bitte warten..."+x);
             dialog.setTitle("Bitte warten...");
             dialog.setMessage("Wir laden den Fahrplan");
             dialog.show();
@@ -179,7 +177,6 @@ public class QuestionsActivity extends AppCompatActivity {
 
                                 MyDataModel model = new MyDataModel();
                                 JSONObject innerObject = array.getJSONObject(jIndex);
-                                // Iterator keys = innerObject.keys();
                                 JSONArray innerArray =  innerObject.names();
 
                                 String datum = innerObject.getString(innerArray.get(0).toString());

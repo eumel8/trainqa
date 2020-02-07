@@ -1,7 +1,9 @@
 <resources>
   <string name="app_name">Bahnumfrage Brieselang</string>
-  <string name="app_desc">Der Arbeitskreis Bahn Brieselang bittet um Bewertung Ihrer Reise mit der Deutschen Bahn. Wählen Sie Reisezeit und Richtung:</string>
-  <string name="app_train">Bitte Zugauswahl treffen</string>
+  <string name="app_desc">Der Arbeitskreis Bahn Brieselang bittet um Bewertung Ihrer Reise mit
+    der Deutschen Bahn. Wählen Sie den Zug, den Sie bewerten möchten</string>
+  <string name="app_train">Zug Auswahl</string>
+  <string name="app_ziel">Zug Richtung</string>
   <string name="question_feld1_input_hint">Datum/Uhrzeit</string>
   <string name="question_feld2_input_hint">Richtung Berlin</string>
   <string name="question_feld3_input_hint">Richtung Nauen</string>
